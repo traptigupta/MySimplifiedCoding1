@@ -31,7 +31,8 @@ public class ProfileActivity extends AppCompatActivity {
         User user = SharedPrefManager.getInstance(this).getUser();
 
         //setting the values to the textviews
-        //textViewId.setText(String.valueOf(user.getId()));
+        textViewId.setText(String.valueOf(user.getId()));
+       // textViewId = (TextView) findViewById(R.id.textViewId);
         textViewUsername.setText(user.getUsername());
         textViewEmail.setText(user.getEmail());
 

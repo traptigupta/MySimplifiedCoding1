@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
+
     EditText editTextUsername, editTextEmail, editTextPassword;
     RadioGroup radioGroupGender;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword1);
         radioGroupGender = (RadioGroup) findViewById(R.id.radioGender);
 
         findViewById(R.id.buttonRegister).setOnClickListener(new View.OnClickListener() {
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //if user pressed on button register
                 //here we will register the user to server
+               // editTextUsername.setError("Please enter username");
                 registerUser();
             }
         });
@@ -62,12 +64,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
+        //editTextUsername.setError("at radio");
         final String username = editTextUsername.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
         final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
 
-
+       // editTextUsername.setError("at radio");
         //first we will do the validations
 
         if (TextUtils.isEmpty(username)) {
@@ -76,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(email)) {
+       if (TextUtils.isEmpty(email)) {
             editTextEmail.setError("Please enter your email");
             editTextEmail.requestFocus();
             return;
         }
 
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+       if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Enter a valid email");
             editTextEmail.requestFocus();
             return;
@@ -156,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     } else {
-                        Toast.makeText(getApplicationContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Some Error occurred", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
